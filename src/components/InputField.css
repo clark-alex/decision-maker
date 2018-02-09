@@ -1,0 +1,15 @@
+.inputField{
+    height: 100vh;
+    width: 40%;
+    background: orangered;
+    position: absolute;
+}
+.inputField div{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 50px;
+    justify-content: center
+}
+.bottom_if{
+    padding-top: 300px;
+}

@@ -1,0 +1,20 @@
+.mainBody{
+    background: lightgrey;
+    margin-left: 40%;
+    height: 100vh;
+    position: relative;
+}
+.topSection{
+display: flex;
+justify-content: space-around;
+padding-top: 100px
+}
+.bottomSection{
+padding-top: 20vh;
+display: flex;
+flex-direction: column;
+}
+.score{
+    background: darkgrey;
+    font-size: 75px;
+}

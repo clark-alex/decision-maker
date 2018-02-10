@@ -8,6 +8,7 @@ class InputField extends Component {
         super(props);
         this.state = {
             inptTxt: "",
+            inptTxt2: "",
             team1: '',
             team2: "",
             gameParams: []
@@ -17,24 +18,26 @@ class InputField extends Component {
         this.handleInput1 = this.handleInput1.bind(this)
 
     }
-    componentDidMount() {
+    // componentDidMount() {
 
-        axios.get(`/api/getTeam1`)
-            .then((res) => this.setState({ team1: res.data }))
-    }
-    
-    componentWillReceiveProps(newProps) {
-        console.log(newProps)
-    }
+    //     axios.get(`/api/getTeam1`)
+    //         .then((res) => this.setState({ team1: res.data }))
+    //     axios.get(`/api/getTeam2`)
+    //         .then((res) => this.setState({ team2: res.data }))
+    // }
+
+    // componentWillReceiveProps(newProps) {
+    //     console.log(newProps)
+    // }
 
     handleInput1(e) {
         var team1 = e.target.value
-        this.setState({inptTxt:team1})
+        this.setState({ inptTxt: team1 })
 
     }
     handleInput2(e) {
-        var team = e.target.value
-        this.setState({ team })
+        var team2 = e.target.value
+        this.setState({ inptTxt2: team2 })
 
     }
     handleInput3(e) {
@@ -49,16 +52,22 @@ class InputField extends Component {
         axios.post('/api/addTeam1', { team1: team })
             .then(res => {
                 console.log(res.data)
-                this.setState({ team1: res.data})
-             } )
-        
+                this.setState({ team1: res.data })
+            })
+
     }
     teamNamer2() {
-        let team = this.state.inptTxt
-        axios.post('http://localhost:3030/api/addTeam2', { team2: team })
-            .then(res => console.log(res.data)
-            )
+        let newTeam = this.state.inptTxt2
+        console.log(newTeam);
+        axios.post('/api/addTeam2', { team2: newTeam })
+            .then(res => {
+                console.log(res.data)
+                this.setState({ team2: res.data })
+            })
+
     }
+ 
+    
     paramSetter() {
         let team = this.state.gameParams
         axios.post('http://localhost:3030/api/addGameParams', { team2: team })
@@ -80,7 +89,7 @@ class InputField extends Component {
                 <div>
                     <input onChange={(e) => this.handleInput2(e)} />
                     <button onClick={() => this.teamNamer2()}>ADD</button>
-                    
+
                 </div>
                 <section className="bottom_if">
                     <h1> Game parameters</h1>

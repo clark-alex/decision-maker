@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 let team1 = 'no-team';
-let team2 = "";
+let team2 = 'no-team';
 let gameParams = [];
 
 app.post(`/api/addTeam1`, (req, res) => {
@@ -33,6 +33,11 @@ app.get('/api/getTeam1', (req, res) => {
     console.log("1234");
     console.log('endpoint', team1)
     res.status(200).send(team1)
+})
+app.get('/api/getTeam2', (req, res) => { 
+    console.log("5667");
+    console.log('endpoint', team2)
+    res.status(200).send(team2)
 })
 
 

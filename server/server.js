@@ -39,6 +39,12 @@ app.get('/api/getTeam2', (req, res) => {
     console.log('endpoint', team2)
     res.status(200).send(team2)
 })
+app.put( `/api/getTeam1`, ( req, res ) => {
+    const { text } = req.body;
+    let message = messages[ messageIndex ];
+    team1=text;
+    res.status(200).send( messages );
+})
 
 
 

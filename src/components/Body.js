@@ -34,6 +34,11 @@ class Body extends Component {
     //     axios.get(`/api/getTeam2`)
     //         .then((res) => this.setState({ team2: res.data }))
     // }
+     /// THIS ONE IS IMPORTANT -- Make sure you have this
+     componentWillReceiveProps(newProps) {
+        console.log('newprops', newProps)
+        this.setState({ team1: newProps, team2: newProps})
+    }
 
 
     getApi() {
@@ -74,50 +79,15 @@ class Body extends Component {
         // console.log(this.state.num2)
     }
     render() {
-        console.log(this.state);
-
-
+        console.log('bodystate', this.state);
         return (
             <div className="mainBody">
-                {/* <button onClick={this.getApi}>get API</button> */}
-                <div className="topSection">
-
-                    {/* LEFT SECTION  */}
-                    <div className="leftSection">
-                        <p>{this.state.team1}</p>
-                        <div>
-                            <button onClick={this.getTeam1}>Display Name</button>
-                            <button onClick={this.numberPicker}>Get your Pokemon!</button>
-                            <p className='pokemon' >{this.state.pokemon1}</p>
-                        </div>
-                    </div>
-                    {/* END OF LEFT */}
-
-
-
-
-                    {/* RIGHT SECTION  */}
-                    <div className="rightSection">
-                        <p>{this.state.team2}</p>
-                        <div>
-                            <button onClick={this.getTeam2} >Display Name</button>
-                            <button onClick={this.numberPicker2}>Get your Pokemon!</button>
-                            <p className='pokemon' >{this.state.pokemon2}</p>
-                        </div>
-
-                    </div>
-                </div>
-                {/* END OF RIGHT */}
-
-
-
-                {/* BOTTOM SECTION  */}
-                <div className="bottomSection">
-                    <span>fighter 1</span>
-                    <button>vs</button>
-                    <span>fighter 2</span>
-                </div>
-                {/* END OF BOTTOM */}
+               
+                    {/* This one is important as well */}
+                        <p>{this.state.team1.t1}
+                       {this.state.team2.t2}
+                       </p>
+               
             </div>
         );
     }

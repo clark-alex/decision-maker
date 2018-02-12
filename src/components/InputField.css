@@ -1,15 +1,30 @@
 .inputField{
-    height: 100vh;
-    width: 40%;
+    height: 50vh;
+    width: 100%;
     background: orangered;
-    position: absolute;
+    position: relative
 }
 .inputField div{
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 50px;
-    justify-content: center
+    /* display: flex; */
+    padding-bottom: 20px;
+    /* justify-content: center */
 }
 .bottom_if{
-    padding-top: 300px;
+    padding-top: 100px;
+}
+.mainBody{
+    /* background: rgb(243, 239, 239);
+    margin-left: 40%;
+    height: 100vh;
+    position: absolute */
+    
+}
+.bodySection{
+    background: lightgrey;
+    padding-right: 20%;
+    padding-left: 20%;
+
+    display: flex;
+    justify-content: space-around
+
 }

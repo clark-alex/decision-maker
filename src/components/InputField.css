@@ -1,16 +1,24 @@
+.theMain{
+    background:black
+}
 .inputField{
     height: 50vh;
     width: 100%;
-    background: orangered;
+   
+    background: url('./Images/pokemonBackground2.jpg');
+    background-size: cover;
+    color: rgb(231, 223, 220);
+    
+
     position: relative
 }
 .inputField div{
     /* display: flex; */
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     /* justify-content: center */
 }
 .bottom_if{
-    padding-top: 100px;
+    padding-top: 0px;
 }
 .mainBody{
     /* background: rgb(243, 239, 239);
@@ -20,11 +28,20 @@
     
 }
 .bodySection{
-    background: lightgrey;
+    background: linear-gradient(45deg, darkgrey, black);
     padding-right: 20%;
     padding-left: 20%;
 
     display: flex;
     justify-content: space-around
 
+}
+.bottom{
+    background: url('./Images/PokemonBackground.jpg');
+    width: 100%;
+    height: 400px;
+    background-size: cover
+}
+.title{
+    background: red;
 }

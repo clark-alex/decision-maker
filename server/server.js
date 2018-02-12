@@ -6,6 +6,8 @@ const express = require('express')
     , port = 3030
 app.use(bodyParser.json())
 app.use(cors())
+app.use( express.static( __dirname + '/../public/build' ) );
+
 
 let team1 = 'no-team';
 let team2 = 'no-team';
@@ -19,7 +21,7 @@ app.post(`/api/addTeam1`, (req, res) => {
 })
 app.post(`/api/addTeam2`, (req, res) => {
     console.log(req.body);
-    team2=req.body
+    team2=req.body.team2
     res.status(200).send(team2)
 
 })
@@ -28,6 +30,11 @@ app.post(`/api/addGameParams`, (req, res) => {
     team2(req.body)
     res.status(200).send(gameParams)
 
+})
+app.post('/api/addPower1', (req, res) => {
+    console.log(req.body);
+    team2(req.body)
+    res.status(200).send(gameParams)
 })
 app.get('/api/getTeam1', (req, res) => { 
     console.log("1234");
@@ -39,12 +46,26 @@ app.get('/api/getTeam2', (req, res) => {
     console.log('endpoint', team2)
     res.status(200).send(team2)
 })
-app.put( `/api/getTeam1`, ( req, res ) => {
-    const { text } = req.body;
-    let message = messages[ messageIndex ];
-    team1=text;
-    res.status(200).send( messages );
+app.put('/api/put', ( req, res ) => {
+    console.log("put...")
+    team1=req.body;
+    res.status(200).send( team1 );
 })
+app.put('/api/put2', ( req, res ) => {
+    console.log("put numba 2")
+    team2=req.body;
+    res.status(200).send( team2 );
+})
+app.delete('/api/delete', (req,res) => {
+    team1="";
+    res.status(200).send(team1)
+})
+app.delete('/api/delete2', (req,res) => {
+    team1="";
+    res.status(200).send(team2)
+})
+
+
 
 
 

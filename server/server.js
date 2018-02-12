@@ -9,8 +9,8 @@ app.use(cors())
 app.use( express.static( __dirname + '/../public/build' ) );
 
 
-let team1 = 'no-team';
-let team2 = 'no-team';
+let team1 = '';
+let team2 = '';
 let gameParams = [];
 
 app.post(`/api/addTeam1`, (req, res) => {

@@ -14,7 +14,7 @@ class InputField extends Component {
             inptTxt2: "",
             team1: '',
             team2: "",
-            gameParams: [],
+            gameParams: '',
             pokemon1: '',
             power1: 0,
             power2: 0,
@@ -24,7 +24,8 @@ class InputField extends Component {
             text: "",
             edit1: "",
             winner: "",
-            editting: false
+            editting: false,
+            salita: "",
 
 
         }
@@ -34,13 +35,12 @@ class InputField extends Component {
         this.handleInput3 = this.handleInput3.bind(this)
         this.handleInput4 = this.handleInput4.bind(this)
         this.numberPicker = this.numberPicker.bind(this)
-        // this.numberPicker2 = this.numberPicker2.bind(this)
-        // this.edit = this.edit.bind(this)
         this.editMessage = this.editMessage.bind(this)
         this.deleteMessage = this.deleteMessage.bind(this)
         this.deleteMessage2 = this.deleteMessage2.bind(this)
         this.editMessage2 = this.editMessage2.bind(this)
-        this.fight = this.fight.bind(this)
+        this.paramSetter=this.paramSetter.bind(this)
+       
 
 
     }
@@ -50,6 +50,7 @@ class InputField extends Component {
             .then((res) => this.setState({ team1: res.data }))
         axios.get(`/api/getTeam2`)
             .then((res) => this.setState({ team2: res.data }))
+
     }
 
     componentWillReceiveProps(newProps) {
@@ -74,6 +75,9 @@ class InputField extends Component {
         this.setState({ text2: e.target.value })
 
     }
+    handler(e){
+        this.setState({salita:e.target.value})
+    }
 
 
 
@@ -95,7 +99,6 @@ class InputField extends Component {
             .then(res => {
                 console.log(res.data)
                 this.setState({ team2: res.data })
-                // why do we use .team2 here?
             })
 
     }
@@ -114,21 +117,15 @@ class InputField extends Component {
         axios.get(`https://pokeapi.co/api/v2/pokemon/${randomNum2}/`)
             .then((res) => this.setState({ power2: res.data.stats[4].base_stat }))
         console.log(this.state.power2);
-        
 
-    }
-    fight() {
-       
-        // else (this.setState({ winner: "TIE!!!" }))
+
     }
 
 
-    // paramSetter() {
-    //     let team = this.state.gameParams
-    //     axios.post('http://localhost:3030/api/addGameParams', { team2: team })
-    //         .then(res => console.log(res.data)
-    //         )
-    // }
+    paramSetter() {
+        this.setState({gameParams:this.state.salita})
+    }
+
     editMessage() {
         let text = this.state.text
         axios.put('http://localhost:3030/api/put', { text }).then(response => {
@@ -143,12 +140,6 @@ class InputField extends Component {
             console.log("put req", '/api/put', this.text2);
         });
     }
-    // edit(e) {
-    //     const { text, editMessage } = this.state;
-    //         this.editMessage(text);
-    //         this.setState({ editting: false });
-
-    // }
     deleteMessage() {
         axios.delete('http://localhost:3030/api/delete').then(response => {
             this.setState({ team1: response.data })
@@ -159,6 +150,7 @@ class InputField extends Component {
             this.setState({ team2: response.data })
         })
     }
+
 
 
 
@@ -187,8 +179,8 @@ class InputField extends Component {
                     <section className="bottom_if">
                         <h1> Game parameters</h1>
                         <div >
-                            <input onChange={(e) => this.handleInput3(e)} />
-                            <button onClick={() => this.paramSetter()}>ADD</button>
+                            <input onChange={(e) => this.handler(e)} />
+                            <button onClick={this.paramSetter}>ADD</button>
 
                         </div>
 
@@ -199,31 +191,40 @@ class InputField extends Component {
                 <section className='bodySection'>
                     <div>
                         <Body t1={this.state.team1} />
-                        <button onClick={(this.deleteMessage)}>Delete</button>
-                        <input onChange={this.handleInput3} />
-                        <button onClick={this.editMessage}></button>
+
+                        <div className="Message__container">
+
+                            {
+                                editting
+                                    ?
+                                    <input className="Message__input" value={this.state.text} onChange={this.handleInput3} onKeyPress={this.editMessage} />
+                                    :
+                                    <span className="Message__text">{''}</span>
+                            }
+                            <span className="Message__edit" onClick={() => this.setState({ editting: !this.state.editting, text })}> Edit </span>
+                            <span className="Message__delete" onClick={this.deleteMessage}> Delete </span>
+                        </div>
                     </div>
-                    <div>
-                        Best 2 of three...
+                    <div className="params">
+                        {this.state.gameParams}
                     </div>
                     <div>
                         <Body t2={this.state.team2} />
-                        <button onClick={(this.deleteMessage2)}>Delete</button>
-                        <input onChange={this.handleInput4} />
-                        <button onClick={this.editMessage2}></button>
+                        
 
 
-                        {/* {
-                            editting
-                                ?
-                                <input className="Message__input" value={this.state.text} onChange={this.handleInput3} onKeyPress={this.edit} />
-                               
-                                
-                                :
-                                <span className="Message__text">{text}</span>
-                        }
-                         {console.log("sulat", this.state.text)}
-                        <span className="Message__edit" onClick={() => this.setState({ editting: !this.state.editting, text })}> edit </span> */}
+                        <div className="Message__container">
+
+                            {
+                                editting
+                                    ?
+                                    <input className="Message__input" value={this.state.text2} onChange={this.handleInput4} onKeyPress={this.editMessage2} />
+                                    :
+                                    <span className="Message__text">{''}</span>
+                            }
+                            <span className="Message__edit" onClick={() => this.setState({ editting: !this.state.editting, text })}> Edit </span>
+                            <span className="Message__delete" onClick={this.deleteMessage2}> Delete </span>
+                        </div>
 
                     </div>
 
@@ -232,18 +233,17 @@ class InputField extends Component {
                 <section className='bodySection'>
                     <div>
                         {/* <button onClick={this.numberPicker}>Get your Pokemon!</button> */}
-                        <p className='pokemon' >{this.state.pokemon1} , Power: {this.state.power1}</p>
+                        <p className='pokemon1' >{this.state.pokemon1}-{this.state.power1}</p>
                     </div>
                     <div>
                         {/* <button onClick={this.numberPicker2}>Get your Pokemon!</button> */}
-                        <p className='pokemon' >{this.state.pokemon2} , Power: {this.state.power2}</p>
+                        <p className='pokemon2' >{this.state.pokemon2}-{this.state.power2}</p>
                     </div>
 
 
                 </section>
                 <div className="bottom">
-                    <button onClick={this.numberPicker}>fight</button>
-                    <button onClick={this.fight}>Results</button>
+                    <button className="fightButton" onClick={this.numberPicker}>FIGHT</button>
                 </div>
                 <div>
 

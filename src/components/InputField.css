@@ -13,22 +13,14 @@
     position: relative
 }
 .inputField div{
-    /* display: flex; */
     padding-bottom: 15px;
-    /* justify-content: center */
 }
 .bottom_if{
     padding-top: 0px;
 }
-.mainBody{
-    /* background: rgb(243, 239, 239);
-    margin-left: 40%;
-    height: 100vh;
-    position: absolute */
-    
-}
+
 .bodySection{
-    background: linear-gradient(45deg, darkgrey, black);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.295), rgb(49, 48, 48));
     padding-right: 20%;
     padding-left: 20%;
 
@@ -43,5 +35,33 @@
     background-size: cover
 }
 .title{
-    background: red;
+    background: rgb(212, 201, 201);
+}
+.pokemon1{
+    font-size: 80px;
+    color: rgb(70, 70, 214);
+    font-weight: bold;
+    
+}
+.pokemon2{
+    font-size: 80px;
+    color: rgb(214, 64, 64);
+    font-weight: bold;
+}
+.Message__container{
+    color: rgb(212, 201, 201);
+    cursor: pointer;
+}
+.params{
+    color: rgba(238, 9, 9, 0.603);
+    font-size: 40px;
+}
+.fightButton{
+    border-radius: 20px;
+    background: rgb(126, 6, 6);
+    font-size: 60px;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer
+    
 }

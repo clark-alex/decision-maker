@@ -27,13 +27,7 @@ class Body extends Component {
     }
 
 
-    // componentDidMount() {
-
-    //     axios.get(`/api/getTeam1`)
-    //         .then((res) => this.setState({ team1: res.data }))
-    //     axios.get(`/api/getTeam2`)
-    //         .then((res) => this.setState({ team2: res.data }))
-    // }
+   
      /// THIS ONE IS IMPORTANT -- Make sure you have this
      componentWillReceiveProps(newProps) {
         console.log('newprops', newProps)
@@ -41,12 +35,12 @@ class Body extends Component {
     }
 
 
-    getApi() {
-        var num = 4
+    // getApi() {
+    //     var num = 4
 
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${num}/`)
-            .then((res) => console.log(res.data.stats[4].base_stat))
-    }
+    //     axios.get(`https://pokeapi.co/api/v2/pokemon/${num}/`)
+    //         .then((res) => console.log(res.data.stats[4].base_stat))
+    // }
     getTeam1() {
         axios.get(`/api/getTeam1`)
             .then((res) => this.setState({ team1: res.data }))
@@ -84,7 +78,7 @@ class Body extends Component {
             <div className="mainBody">
                
                     {/* This one is important as well */}
-                        <p>{this.state.team1.t1}
+                        <p className="thetext">{this.state.team1.t1}
                        {this.state.team2.t2}
                        </p>
                
